@@ -35,7 +35,7 @@ class List extends React.Component {
             <button
               type="button"
               data-testid="delete-button"
-              onClick={ handleCardDelete }
+              onClick={ () => handleCardDelete(cardName, cardTrunfo) }
             >
               Excluir
             </button>

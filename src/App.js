@@ -11,6 +11,7 @@ class App extends React.Component {
     this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
     this.validadeInfo = this.validadeInfo.bind(this);
     this.handleCardDelete = this.handleCardDelete.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
 
     this.state = {
       cardName: '',
@@ -69,17 +70,22 @@ class App extends React.Component {
     });
   }
 
-  handleCardDelete({ target }) {
-    const name = target.parentNode.firstChild.children[0].innerText.split(':')[1];
-    const isTrunfo = target.parentNode.firstChild.children[7];
+  handleCardDelete(name, trunfo) {
     this.setState((prev) => ({
       savedCards: [...prev.savedCards].filter(({ cardName }) => cardName !== name),
     }));
-    if (isTrunfo !== undefined) {
+    if (trunfo === true) {
       this.setState({
         hasTrunfo: false,
       });
     }
+  }
+
+  handleFilterChange({ target }) {
+    this.setState((prev) => ({
+      savedCards: [...prev.savedCards]
+        .filter((card) => card.cardName.includes(target.value)),
+    }));
   }
 
   validadeInfo() {
@@ -155,6 +161,25 @@ class App extends React.Component {
           />
         </div>
         <div className="listContainer">
+          <div className="aside">
+            <p>Filtros de busca</p>
+            <input
+              type="text"
+              data-testid="name-filter"
+              placeholder="Nome da carta"
+              onChange={ this.handleFilterChange }
+            />
+            {/* <select
+              data-testid="rare-filter"
+              placeholder="raridade"
+              onChange={ this.handleFilterChange }
+            >
+              <option>todas</option>
+              <option>normal</option>
+              <option>raro</option>
+              <option>muito raro</option>
+            </select> */}
+          </div>
           <List
             savedCards={ savedCards }
             handleCardDelete={ this.handleCardDelete }
