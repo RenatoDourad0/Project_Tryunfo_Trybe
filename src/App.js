@@ -19,9 +19,9 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
-      // hasTrunfo: false,
-      // isSaveButtonDisabled: true,
       savedCards: [],
+      hasTrunfo: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -62,58 +62,55 @@ class App extends React.Component {
     });
   }
 
-  // validadeInfo() {
-  //   const { cardName, cardDescription, cardImage, cardRare } = this.state;
-  //   const {cardAttr1, cardAttr2, cardAttr3} = this.state;
-  //   if (this.state.cardTrunfo === true) {
-  //     this.setState({
-  //       hasTrunfo: true,
-  //     })
-  //   }
-  // }
-  //   return cardName !== '' ? cardImage !== '' ? cardDescription !== '' ?  parseInt(cardAttr1, 10) <= 90 ? parseInt(cardAttr1, 10) > 0 ?  parseInt(cardAttr2, 10) <= 90 ? parseInt(cardAttr2, 10) > 0 ?  parseInt(cardAttr3, 10) <= 90 ? parseInt(cardAttr3, 10) > 0 ? parseInt(cardAttr1, 10) + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= 210 ? this.setState({
-  //     isSaveButtonDisabled: false
-  //   }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     }) : this.setState({
-  //       isSaveButtonDisabled: true
-  //     });
-
-  // if (cardName.length > 0 && cardDescription.length > 0 && cardImage.length > 0 && cardRare.length > 0) {
-  //   if (parseInt(cardAttr1, 10) <= 90 && parseInt(cardAttr2, 10) <= 90 && parseInt(cardAttr3, 10) <= 90) {
-  //     if (parseInt(cardAttr1, 10) + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= 210) {
-  //       if(parseInt(cardAttr1, 10) > 0 && parseInt(cardAttr2, 10) > 0 && parseInt(cardAttr3, 10) > 0) {
-  //         return this.setState({
-  //           isSaveButtonDisabled: false
-  //         });
-  //       }
-  //     }
-  //   }
-  // }
-  // return this.setState({
-  //   isSaveButtonDisabled: true
-  // });
-  // };
+  validadeInfo() {
+    const {
+      cardName: name,
+      cardDescription: desc,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+    const attr1Numb = parseInt(cardAttr1, 10);
+    const attr2Numb = parseInt(cardAttr2, 10);
+    const attr3Numb = parseInt(cardAttr3, 10);
+    const maxValue = 90;
+    const maxSum = 210;
+    const one = name !== '' && desc !== '' && cardImage !== '' && cardRare !== '';
+    const two = attr1Numb <= maxValue && attr2Numb <= maxValue && attr3Numb <= maxValue;
+    const tree = attr1Numb + attr2Numb + attr3Numb <= maxSum;
+    const four = attr1Numb > 0 && attr2Numb > 0 && attr3Numb > 0;
+    if (cardTrunfo === true) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
+    if (one && two && tree && four) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    }
+  }
 
   render() {
-    const { cardName, cardDescription, cardAttr1, cardAttr2 } = this.state;
-    const { cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+      hasTrunfo,
+    } = this.state;
     return (
       <div>
         <Form
@@ -128,7 +125,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleChange }
-          onSaveButtonClick={ his.handleSaveButtonClick }
+          onSaveButtonClick={ this.handleSaveButtonClick }
         />
         <Card
           cardName={ cardName }
