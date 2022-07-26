@@ -11,7 +11,9 @@ class App extends React.Component {
     this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
     this.validadeInfo = this.validadeInfo.bind(this);
     this.handleCardDelete = this.handleCardDelete.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleNameFilterChange = this.handleNameFilterChange.bind(this);
+    this.handleRareFilterChange = this.handleRareFilterChange.bind(this);
+    this.handleTrunfoFilterChange = this.handleTrunfoFilterChange.bind(this);
 
     this.state = {
       cardName: '',
@@ -25,6 +27,8 @@ class App extends React.Component {
       savedCards: [],
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      isNameFilterDisabled: false,
+      isRareFilterDisabled: false,
     };
   }
 
@@ -81,11 +85,37 @@ class App extends React.Component {
     }
   }
 
-  handleFilterChange({ target }) {
+  handleNameFilterChange({ target }) {
     this.setState((prev) => ({
       savedCards: [...prev.savedCards]
         .filter((card) => card.cardName.includes(target.value)),
     }));
+  }
+
+  handleRareFilterChange({ target }) {
+    if (target.value === 'todas') { return; }
+    this.setState((prev) => ({
+      savedCards: [...prev.savedCards]
+        .filter((card) => card.cardRare === target.value),
+    }));
+  }
+
+  handleTrunfoFilterChange({ target }) {
+    if (target.checked) {
+      this.setState((prev) => ({
+        savedCards: [...prev.savedCards]
+          .filter((card) => card.cardTrunfo === target.checked),
+      }));
+      this.setState({
+        isNameFilterDisabled: true,
+        isRareFilterDisabled: true,
+      });
+    } else {
+      this.setState({
+        isNameFilterDisabled: false,
+        isRareFilterDisabled: false,
+      });
+    }
   }
 
   validadeInfo() {
@@ -131,6 +161,8 @@ class App extends React.Component {
       isSaveButtonDisabled,
       hasTrunfo,
       savedCards,
+      isNameFilterDisabled,
+      isRareFilterDisabled,
     } = this.state;
     return (
       <div>
@@ -167,18 +199,30 @@ class App extends React.Component {
               type="text"
               data-testid="name-filter"
               placeholder="Nome da carta"
-              onChange={ this.handleFilterChange }
+              onChange={ this.handleNameFilterChange }
+              disabled={ isNameFilterDisabled }
             />
-            {/* <select
+            <select
+              id="teste"
               data-testid="rare-filter"
-              placeholder="raridade"
-              onChange={ this.handleFilterChange }
+              onChange={ this.handleRareFilterChange }
+              defaultValue="todas"
+              disabled={ isRareFilterDisabled }
             >
               <option>todas</option>
               <option>normal</option>
               <option>raro</option>
               <option>muito raro</option>
-            </select> */}
+            </select>
+            <label htmlFor="trunfo">
+              Super trunfo
+              <input
+                type="checkbox"
+                name="trunfo"
+                data-testid="trunfo-filter"
+                onChange={ this.handleTrunfoFilterChange }
+              />
+            </label>
           </div>
           <List
             savedCards={ savedCards }
