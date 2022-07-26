@@ -20,6 +20,7 @@ class List extends React.Component {
         return (
           <div
             key={ index }
+            className="listCard"
           >
             <Card
               cardName={ cardName }

@@ -32,8 +32,7 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    });
-    this.validadeInfo();
+    }, () => this.validadeInfo());
   }
 
   handleSaveButtonClick(event) {
@@ -71,7 +70,7 @@ class App extends React.Component {
   }
 
   handleCardDelete({ target }) {
-    const name = target.parentNode.firstChild.children[0].innerText;
+    const name = target.parentNode.firstChild.children[0].innerText.split(':')[1];
     const isTrunfo = target.parentNode.firstChild.children[7];
     this.setState((prev) => ({
       savedCards: [...prev.savedCards].filter(({ cardName }) => cardName !== name),
@@ -101,7 +100,7 @@ class App extends React.Component {
     const one = name !== '' && desc !== '' && cardImage !== '' && cardRare !== '';
     const two = attr1Numb <= maxValue && attr2Numb <= maxValue && attr3Numb <= maxValue;
     const tree = attr1Numb + attr2Numb + attr3Numb <= maxSum;
-    const four = attr1Numb > 0 && attr2Numb > 0 && attr3Numb > 0;
+    const four = attr1Numb >= 0 && attr2Numb >= 0 && attr3Numb >= 0;
     if (one && two && tree && four) {
       this.setState({
         isSaveButtonDisabled: false,
@@ -129,34 +128,38 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.handleChange }
-          onSaveButtonClick={ this.handleSaveButtonClick }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
-        <List
-          savedCards={ savedCards }
-          handleCardDelete={ this.handleCardDelete }
-        />
+        <div className="inputContainer">
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            hasTrunfo={ hasTrunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onInputChange={ this.handleChange }
+            onSaveButtonClick={ this.handleSaveButtonClick }
+          />
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </div>
+        <div className="listContainer">
+          <List
+            savedCards={ savedCards }
+            handleCardDelete={ this.handleCardDelete }
+          />
+        </div>
       </div>
     );
   }

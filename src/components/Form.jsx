@@ -18,9 +18,10 @@ class Form extends React.Component {
       cardRare,
     } = this.props;
     return (
-      <div>
+      <div className="form">
         <label htmlFor="name">
           Nome da carta:
+          <br />
           <input
             type="text"
             name="cardName"
@@ -32,11 +33,12 @@ class Form extends React.Component {
         </label>
         <label htmlFor="cardDescription">
           Descrição:
+          <br />
           <textarea
             name="cardDescription"
             id="cardDescription"
-            cols="30"
-            rows="10"
+            cols="17"
+            rows="3"
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -44,6 +46,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="firstAtribut">
           Primeiro atributo:
+          <br />
           <input
             type="number"
             name="cardAttr1"
@@ -55,6 +58,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="secondAtribut">
           Segundo atributo:
+          <br />
           <input
             type="number"
             name="cardAttr2"
@@ -66,6 +70,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="thirdAtribut">
           Terceiro atributo:
+          <br />
           <input
             type="number"
             name="cardAttr3"
@@ -77,6 +82,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="image">
           Adicione uma imagem:
+          <br />
           <input
             type="text"
             name="cardImage"
@@ -88,6 +94,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="rarity">
           Defina a raridade:
+          <br />
           <select
             name="cardRare"
             id="rarity"
