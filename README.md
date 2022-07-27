@@ -13,15 +13,16 @@
 
 ### The project
 
-Develop a functional card game where the user can add and remove customised cards, view the full deck and play.
-The main habilities practiced in this project were:
+In this project I developed a functional card game where the user can add and remove customised cards, view the full deck and play.
+
+The main habilities practiced here were:
 
 - Render components based on it's state
 
 - Update components state
 
 - Capture events with React syntax
-- 
+
 - Develop forms using JSX syntax
 
 - Pass information from child components to its parent through callBacks
