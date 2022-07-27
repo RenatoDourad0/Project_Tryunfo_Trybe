@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Project_Tryunfo_Trybe/static/css/main.3c4ca035.css",
+    "main.js": "/Project_Tryunfo_Trybe/static/js/main.72846f0d.js",
+    "index.html": "/Project_Tryunfo_Trybe/index.html",
+    "main.3c4ca035.css.map": "/Project_Tryunfo_Trybe/static/css/main.3c4ca035.css.map",
+    "main.72846f0d.js.map": "/Project_Tryunfo_Trybe/static/js/main.72846f0d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c4ca035.css",
+    "static/js/main.72846f0d.js"
+  ]
+}
