@@ -13,14 +13,18 @@
 
 ### The project
 
-Develop a functional card game:
+Develop a functional card game where the user can add and remove customised cards, view the full deck and play.
+The main habilities practiced in this project were:
 
-- Use JSX inside React;
-- Create class components in React;
-- Correctly use the React class components render() method;
-- Create multiple components bt iterating an array;
-- Correctly use React props;
-- Use React PropTypes to validade prop types;
+- Render components based on it's state
+
+- Update components state
+
+- Capture events with React syntax
+- 
+- Develop forms using JSX syntax
+
+- Pass information from child components to its parent through callBacks
 
 
 ### Screenshot
@@ -35,11 +39,11 @@ Develop a functional card game:
 
 ## My process
 
-This project was my fist contact with React. It was a realy good practice of the basics.
+This project was a opportunity to practice and consolidade my knowledge on React structure, especially for class and stateful components.
 
 ### Built with
 
-- React
+- React Js
 - CSS
 
 
