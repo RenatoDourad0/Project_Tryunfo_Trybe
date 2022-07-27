@@ -31,7 +31,7 @@ Develop a functional card game:
 ### Links
 
 - Solution URL: [Github](https://github.com/RenatoDourad0/Project_Tryunfo_Trybe)
-- [Live site]()
+- [Live site](https://renatodourad0.github.io/Project_Tryunfo_Trybe/)
 
 ## My process
 
