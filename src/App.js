@@ -6,7 +6,6 @@ import List from './components/List';
 class App extends React.Component {
   constructor() {
     super();
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
     this.validadeInfo = this.validadeInfo.bind(this);
@@ -14,6 +13,9 @@ class App extends React.Component {
     this.handleNameFilterChange = this.handleNameFilterChange.bind(this);
     this.handleRareFilterChange = this.handleRareFilterChange.bind(this);
     this.handleTrunfoFilterChange = this.handleTrunfoFilterChange.bind(this);
+    this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleNextCLick = this.handleNextCLick.bind(this);
+    this.handleReplay = this.handleReplay.bind(this);
 
     this.state = {
       cardName: '',
@@ -27,8 +29,11 @@ class App extends React.Component {
       savedCards: [],
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      isListButtonDisabled: false,
       isNameFilterDisabled: false,
       isRareFilterDisabled: false,
+      gameOn: [],
+      playCardIndex: 0,
     };
   }
 
@@ -118,6 +123,33 @@ class App extends React.Component {
     }
   }
 
+  handlePlayClick() {
+    const { savedCards } = this.state;
+    const half = 0.5;
+    const shuffle = savedCards.sort(() => Math.random() - half);
+    this.setState({
+      gameOn: shuffle,
+      isListButtonDisabled: true,
+    });
+  }
+
+  handleNextCLick() {
+    const { playCardIndex, gameOn } = this.state;
+    if (playCardIndex <= gameOn.length - 1) {
+      this.setState((prev) => ({
+        playCardIndex: prev.playCardIndex + 1,
+      }));
+    }
+  }
+
+  handleReplay() {
+    const half = 0.5;
+    this.setState((prev) => ({
+      playCardIndex: 0,
+      gameOn: prev.savedCards.sort(() => Math.random() - half),
+    }));
+  }
+
   validadeInfo() {
     const {
       cardName: name,
@@ -161,8 +193,11 @@ class App extends React.Component {
       isSaveButtonDisabled,
       hasTrunfo,
       savedCards,
+      isListButtonDisabled,
       isNameFilterDisabled,
       isRareFilterDisabled,
+      gameOn,
+      playCardIndex,
     } = this.state;
     return (
       <div>
@@ -223,11 +258,39 @@ class App extends React.Component {
                 onChange={ this.handleTrunfoFilterChange }
               />
             </label>
+            <button
+              type="button"
+              onClick={ this.handlePlayClick }
+            >
+              Iniciar jogo
+            </button>
+            {
+              playCardIndex === gameOn.length - 1
+                ? <button
+                    type="button"
+                    onClick={ this.handleReplay }
+                >
+                    Embaralhar novamente
+                </button>
+                : <button
+                    type="button"
+                    onClick={ this.handleNextCLick }
+                >
+                    Próxima carta
+                </button>
+            }
           </div>
-          <List
-            savedCards={ savedCards }
-            handleCardDelete={ this.handleCardDelete }
-          />
+          { gameOn.length > 0
+            ? <List
+                savedCards={ [gameOn[playCardIndex]] }
+                handleCardDelete={ this.handleCardDelete }
+                listButtonStatus = { isListButtonDisabled }
+            />
+            : <List
+                savedCards={ savedCards }
+                handleCardDelete={ this.handleCardDelete }
+                listButtonStatus = { isListButtonDisabled }
+            /> }
         </div>
       </div>
     );

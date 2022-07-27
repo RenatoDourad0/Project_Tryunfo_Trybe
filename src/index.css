@@ -1,3 +1,9 @@
+body {
+background-color: rgb(198, 195, 195);
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-weight: 500;
+}
+
 .inputContainer {
   display: flex;
 }
@@ -5,9 +11,63 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
   gap: 10px;
   min-height: 450px;
+  margin-left: 50px;
+  font-weight: 600;
+}
+
+.form input, .form select, .form textarea {
+  min-width: 300px;
+  min-height: 25px;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid gray;
+  margin-top: 5px;
+}
+
+.form input[type=number] {
+  min-width: 205px;
+  margin-left: 5px;
+}
+
+#pontosRestantes {
+  margin-left: 106px;
+}
+
+#image {
+  min-width: 223px;
+  margin-left: 5px;
+}
+
+#supertrunfoLabel {
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+#isSupertrunfo {
+  min-width: 30px;
+  margin-left: 0;
+}
+
+.form select {
+  min-width: 306px;
+  height: 30px;
+}
+
+.form button {
+  width: 120px;
+  height: 40px;
+  font-size: 1.1em;
+  color: white;
+  background-color: blue;
+  border-radius: 5px;
+}
+
+.form button:disabled {
+  color: black;
+  background-color: gray;
 }
 
 .inputContainer .card {
@@ -15,8 +75,19 @@
   width: 25%;
   min-height: 450px;
   margin: auto;
-  background-color: green;
+  background-color: white;
   border-radius: 10px;
+  overflow: auto;
+}
+
+.inputContainer .innerCard {
+  position: absolute;
+  background-color: green;
+  min-height: 430px;
+  width: 95%;
+  margin: 8px 1.8%;
+  border-radius: 10px;
+  border: 2px solid blue;
 }
 
 .inputContainer .card p {
@@ -25,21 +96,23 @@
   padding: 5px 10px;
   margin-top: 10px;
   border-radius: 15px;
-  background-color: gray;
-  color: white;
+  background-color: rgb(198, 195, 195);
+  color: black;
+  min-height: 20px;
 }
 
 .inputContainer .card p:nth-child(1) {
-  margin-top: 180px
+  margin-top: 180px;
 }
 
 .inputContainer .card img {
   position: absolute;
-  top: 10px;
-  right: 5%;
-  width: 90%;
-  height: 150px;
-  margin-left: 5%;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 170px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .listContainer {
@@ -93,15 +166,20 @@
   border-radius: 10px;
 }
 
+.listcard button:disabled {
+  background-color: gray;
+}
+
 .card p:nth-child(8) {
   position: absolute;
   text-align: center;
-  top: 80px;
-  right: 40px;
-  width: 40px;
+  top: 70px;
+  right: 25px;
+  width: 50px;
   background-color: yellow;
-  padding: 20px;
-  border-radius: 100px;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 100%;
   color: black;
 }
 

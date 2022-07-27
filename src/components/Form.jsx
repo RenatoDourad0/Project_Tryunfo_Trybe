@@ -17,10 +17,12 @@ class Form extends React.Component {
       onSaveButtonClick,
       cardRare,
     } = this.props;
+    const max = 210;
     return (
       <div className="form">
+        <h2>Adicionar nova carta</h2>
         <label htmlFor="name">
-          Nome da carta:
+          Nome
           <br />
           <input
             type="text"
@@ -32,7 +34,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardDescription">
-          Descrição:
+          Descrição
           <br />
           <textarea
             name="cardDescription"
@@ -45,8 +47,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="firstAtribut">
-          Primeiro atributo:
-          <br />
+          Atributo 1
           <input
             type="number"
             name="cardAttr1"
@@ -57,8 +58,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="secondAtribut">
-          Segundo atributo:
-          <br />
+          Atributo 2
           <input
             type="number"
             name="cardAttr2"
@@ -69,8 +69,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="thirdAtribut">
-          Terceiro atributo:
-          <br />
+          Atributo 3
           <input
             type="number"
             name="cardAttr3"
@@ -80,9 +79,12 @@ class Form extends React.Component {
             onChange={ onInputChange }
           />
         </label>
+        <span id="pontosRestantes">
+          Pontos restantes -
+          { max - cardAttr1 - cardAttr2 - cardAttr3 }
+        </span>
         <label htmlFor="image">
-          Adicione uma imagem:
-          <br />
+          Imagem
           <input
             type="text"
             name="cardImage"
@@ -93,7 +95,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="rarity">
-          Defina a raridade:
+          Raridade
           <br />
           <select
             name="cardRare"
@@ -107,9 +109,8 @@ class Form extends React.Component {
             <option value="muito raro">Muito raro</option>
           </select>
         </label>
-        <label htmlFor="isSupertrunfo">
-          É super trunfo?
-          { hasTrunfo ? 'Você já tem um Super Trunfo em seu baralho' : <input
+        <label htmlFor="isSupertrunfo" id="supertrunfoLabel">
+          { hasTrunfo ? 'Você já tem um Super Trunfo em seu baralho ' : <input
             type="checkbox"
             name="cardTrunfo"
             id="isSupertrunfo"
@@ -117,7 +118,7 @@ class Form extends React.Component {
             checked={ cardTrunfo }
             onChange={ onInputChange }
           /> }
-
+          Super Trunfo
         </label>
         <button
           type="submit"
