@@ -17,6 +17,8 @@ In this project I developed a functional card game where the user can add and re
 
 The main habilities practiced here were:
 
+- stateFull and controled components
+
 - Render components based on it's state
 
 - Update components state
