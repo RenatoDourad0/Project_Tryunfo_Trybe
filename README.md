@@ -30,10 +30,6 @@ The main habilities practiced here were:
 - Pass information from child components to its parent through callBacks
 
 
-### Screenshot
-
-![Desktop gif]()
-
 
 ### Links
 
